@@ -42,9 +42,15 @@ then
     validate $? useradded
 fi
 
-cd /app
+cd /app &>>$logfile
 if [ $? -ne 0 ]
 then 
     mkdir /app
     validate $? directory
+    curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$logfile
+    cd /app
+    unzip /tmp/backend.zip
 fi
+npm install &>>$logfile
+validate $? npm
+
