@@ -26,7 +26,7 @@ then
     exit 1
 fi
 
-dnf install mysql-server -y
+dnf install mysql-server -y &>>$logfile
 validate $? mysql
 
 systemctl enable mysqld
