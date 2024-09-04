@@ -26,16 +26,16 @@ then
     exit 1
 fi
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>>$logfile
 validate $? disabled nodejs
 
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>$logfile
 validate $? enabled nodejs
 
-dnf install nodejs -y
+dnf install nodejs -y &>>$logfile
 validate $? installing nodejs
 
-cd expense
+cd expense &>>$logfile
 if [ $? -ne 0 ]
 then 
     useradd expense
