@@ -44,6 +44,6 @@ cd /usr/share/nginx/html
 unzip /tmp/frontend.zip &>>$logfile
 validate $? unzip
 
-cp /home/ec2-user/expense-shell/expense.conf /etc/nginx/default.d/expense.conf
+cp /home/ec2-user/expense-shell/expnese.conf /etc/nginx/default.d/expense.conf
 
 systemctl restart nginx
