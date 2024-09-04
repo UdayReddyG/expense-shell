@@ -35,10 +35,16 @@ validate $? enabled nodejs
 dnf install nodejs -y &>>$logfile
 validate $? installing nodejs
 
-cd expense &>>$logfile
+su - expense &>>$logfile
 if [ $? -ne 0 ]
 then 
     useradd expense
     validate $? useradded
 fi
 
+cd /app
+if [ $? -ne 0 ]
+then 
+    mkdir /app
+    validate $? directory
+fi
