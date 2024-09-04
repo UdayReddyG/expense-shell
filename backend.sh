@@ -47,10 +47,13 @@ if [ $? -ne 0 ]
 then 
     mkdir /app
     validate $? directory
-    curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$logfile
-    cd /app
-    unzip /tmp/backend.zip
 fi
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$logfile
+validate $? downloading
+cd /app
+validate $? opening
+unzip /tmp/backend.zip
+validate $? unzip
 npm install &>>$logfile
 validate $? npm
 
