@@ -35,7 +35,7 @@ validate $? enabled nodejs
 dnf install nodejs -y &>>$logfile
 validate $? installing nodejs
 
-su - expense &>>$logfile
+id -expense &>>$logfile
 if [ $? -ne 0 ]
 then 
     useradd expense
