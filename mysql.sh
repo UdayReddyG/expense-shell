@@ -35,6 +35,14 @@ validate $? mysql
 systemctl start mysqld
 validate $? mysql
 
-mysql_secure_installation --set-root-pass ExpenseApp@1
-validate $? mysql
+mysql -h database.the4teen.info -u root -pExpenseApp@1 -e 'show databases;' &>>$logfile
+if [ $? -ne 0 ]
+then
+    echo "mysql is not setup.... setting up now"
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    validate $? mysql
+else
+    echo "mysql already installed"
+fi
+
 
