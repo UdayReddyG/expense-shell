@@ -42,12 +42,8 @@ then
     validate $? useradded
 fi
 
-cd /app &>>$logfile
-if [ $? -ne 0 ]
-then 
-    mkdir /app
-    validate $? directory
-fi
+mkdir -p /app/
+validate $? directry
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$logfile
 validate $? downloading
 cd /app
